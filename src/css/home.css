@@ -258,3 +258,69 @@
   transform: scale(1.5);
   overflow: hidden;
 }
+
+/* ACTIVE USERS */
+.homepage .active-users-frame {
+  height: 550px;
+  width: 100%;
+}
+
+.homepage .active-users-frame .main {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage .active-users-frame .category-title {
+  color: #343434;
+  font-family: "Roboto Serif";
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.homepage .cards-frame {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 56px;
+  gap:14px;
+}
+
+.homepage .cards-frame .card {
+  height: 302px;
+  width: 305px;
+}
+
+.homepage .cards-frame .member-nickname {
+  color: #000;
+  text-align: center;
+  font-family: "Roboto Serif";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.homepage .cards-frame .no-data {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 4000;
+  font-size: 30px;
+  line-height: 34px;
+  color: #e3c08d;
+}
