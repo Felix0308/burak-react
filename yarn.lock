@@ -1675,6 +1675,13 @@
   resolved "https://registry.yarnpkg.com/@mui/core-downloads-tracker/-/core-downloads-tracker-6.3.1.tgz#e954cd6be58d92f3acc255089413357b6c4e08c6"
   integrity sha512-2OmnEyoHpj5//dJJpMuxOeLItCCHdf99pjMFfUFdBteCunAK9jW+PwEo4mtdGcLs7P+IgZ+85ypd52eY4AigoQ==
 
+"@mui/icons-material@^6.4.0":
+  version "6.4.0"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-material-6.4.0.tgz#4e1b74578b6c4987c341c9739f5f40987c44ccd1"
+  integrity sha512-zF0Vqt8a+Zp2Oz8P+WvJflba6lLe3PhxIz1NNqn+n4A+wKLPbkeqY8ShmKjPyiCTg0RMbPrp993oUDl9xGsDlQ==
+  dependencies:
+    "@babel/runtime" "^7.26.0"
+
 "@mui/material@^6.3.1":
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/@mui/material/-/material-6.3.1.tgz#75c51a4f4fefa9879fb197e8fae11dc6891a9d0b"
@@ -2339,7 +2346,7 @@
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-19.0.3.tgz#0804dfd279a165d5a0ad8b53a5b9e65f338050a4"
   integrity sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA==
 
-"@types/react-dom@^18.2.18":
+"@types/react-dom@^18.3.5":
   version "18.3.5"
   resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.3.5.tgz#45f9f87398c5dcea085b715c58ddcf1faf65f716"
   integrity sha512-P4t6saawp+b/dFrUr2cvkVsfvPguwsxtH6dNIYRllMsefqFzkZk5UIjzyDOv5g1dXIPdG4Sp1yCR4Z6RCUsG/Q==
@@ -2383,7 +2390,7 @@
   dependencies:
     csstype "^3.0.2"
 
-"@types/react@^18.2.48":
+"@types/react@^18.3.18":
   version "18.3.18"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.3.18.tgz#9b382c4cd32e13e463f97df07c2ee3bbcd26904b"
   integrity sha512-t4yC+vtgnkYjNSKlFx1jkAhH8LgTo2N/7Qvi83kdEaUtMDiwpbLAktKDaAMlRcJ5eSxZkH74eEGt1ky31d7kfQ==

@@ -1,6 +1,7 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import React from "react";
 
 export default function OtherNavbar() {
   const authMember = null;
