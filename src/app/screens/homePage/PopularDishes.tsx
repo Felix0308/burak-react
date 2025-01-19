@@ -8,6 +8,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import CardOverflow from "@mui/joy/CardOverflow";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { DescriptionOutlined } from "@mui/icons-material";
 
 const list = [
   { productName: "Lavash", imagePath: "/img/lavash.webp" },
@@ -21,66 +22,65 @@ export default function PopularDishes() {
     <div className="popular-dishes-frame">
       <Container>
         <Stack className="popular-section">
-          <Box className="section-title">Popular dishes</Box>
-          <Stack className="cards-frame">
+          <Box className="category-title">Popular Dishes</Box>
+          <Stack className="cards-frame" direction="row" spacing={2}>
             {list.length !== 0 ? (
-              list.map((ele, index) => {
-                return (
-                  <CssVarsProvider key={index}>
-                    <Card className={"card"}>
-                      <CardCover>
-                        <img src={ele.imagePath} alt="dish photo here" />
-                      </CardCover>
-                      <CardCover className="card-cover" />
-                      <CardContent sx={{ justifyContent: "flex-end" }}>
-                        <Stack
-                          flexDirection={"row"}
-                          justifyContent={"space-between"}
-                        >
-                          <Typography
-                            level="h2"
-                            fontSize=" lg"
-                            textColor="#fff"
-                            mb={1}
-                          >
-                            {ele.productName}
-                          </Typography>
-                          <Typography
-                            sx={{
-                              fontWeight: "md",
-                              color: "neutral.300",
-                              alignItems: "center",
-                              display: "flex",
-                            }}
-                          >
-                            20
-                            <VisibilityIcon
-                              sx={{ fontSize: 25, marginLeft: "5px" }}
-                            />
-                          </Typography>
-                        </Stack>
-                      </CardContent>
-                      <CardOverflow
-                        sx={{
-                          display: "flex",
-                          gap: 1.5,
-                          py: 1.5,
-                          px: "var(--Card-padding)",
-                          borderTop: "1px solid",
-                          height: "60px",
-                        }}
+              list.map((ele, index) => (
+                <CssVarsProvider key={index}>
+                  <Card className="card" sx={{ width: 250 }}>
+                    <CardCover>
+                      <img src={ele.imagePath} alt={ele.productName} />
+                    </CardCover>
+                    <CardCover className="card-cover" />
+                    <CardContent sx={{ justifyContent: "flex-end" }}>
+                      <Stack
+                        flexDirection="row"
+                        justifyContent="space-between"
+                        alignItems="center"
                       >
                         <Typography
-                          startDecorator={<DescriptionOutlinedIcon />}
-                          textColor="neutral.300"
+                          level="h2"
+                          fontSize="lg"
+                          textColor="#fff"
+                          mb={1}
                         >
-                          This is delicious meal
+                          {ele.productName}
                         </Typography>
-                      </CardOverflow>
-                    </Card>
-                  </CssVarsProvider>
-                );
-              })
+                        <Typography
+                          sx={{
+                            fontWeight: "md",
+                            color: "neutral.300",
+                            alignItems: "center",
+                            display: "flex",
+                          }}
+                        >
+                          20
+                          <VisibilityIcon sx={{ marginLeft: 1 }} />
+                        </Typography>
+                      </Stack>
+                    </CardContent>
+                    <CardOverflow
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 1.5,
+                        py: 1.5,
+                        px: "var(--Card-padding)",
+                        borderTop: "1px solid",
+                        borderColor: "neutral.outlinedBorder",
+                        height: "60px",
+                      }}
+                    >
+                      <Typography
+                        startDecorator={<DescriptionOutlined />}
+                        textColor="neutral.300"
+                      >
+                        This is a delicious meal
+                      </Typography>
+                    </CardOverflow>
+                  </Card>
+                </CssVarsProvider>
+              ))
             ) : (
               <Box className="no-data">Popular products are not available!</Box>
             )}
