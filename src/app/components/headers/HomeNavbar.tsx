@@ -1,15 +1,29 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function HomeNavbar() {
   const authMember = null;
-  const [count, setCount] = useState(0); // saqlanishi kerak bo'lgan keyni(count)ni kiritdik va uni boshlang'ich qiymatini 0 deb oldik. hookimiz count nomli state ni hosil qilib berdi
+  const [count, setCount] = useState<number>(0); // saqlanishi kerak bo'lgan keyni(count)ni kiritdik va uni boshlang'ich qiymatini 0 deb oldik. hookimiz count nomli state ni hosil qilib berdi
+  const [value, setvalue] = useState<boolean>(true);
 
-  const buttonHandler = () => {  // Handler usulida setCount ni hosil qildik
+  useEffect(() => {
+    // 2 ta argument : 1-collback function, 2-Array depedensy
+    console.log("componentDidMount"); // DATA FETCH
     setCount(count + 1);
-  }
+
+    return () => {
+      console.log("componentWillUnmount");
+    };
+  }, [value]); // => componentDidUpdate()
+
+  /** HANDLERS **/
+
+  const buttonHandler = () => {
+    // Handler usulida setCount ni hosil qildik
+    setvalue(!value);
+  };
 
   return (
     <div className="home-navbar">
