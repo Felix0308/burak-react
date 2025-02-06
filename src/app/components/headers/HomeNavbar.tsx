@@ -1,10 +1,16 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import React from "react";
+import React, { useState } from "react";
 
 export default function HomeNavbar() {
   const authMember = null;
+  const [count, setCount] = useState(0); // saqlanishi kerak bo'lgan keyni(count)ni kiritdik va uni boshlang'ich qiymatini 0 deb oldik. hookimiz count nomli state ni hosil qilib berdi
+
+  const buttonHandler = () => {  // Handler usulida setCount ni hosil qildik
+    setCount(count + 1);
+  }
+
   return (
     <div className="home-navbar">
       <Container className="navbar-container">
@@ -67,10 +73,15 @@ export default function HomeNavbar() {
               World's Most Delicious Cousine
             </Box>
             <Box className={"wel-txt"}>The Choice, not just a choice</Box>
-            <Box className={"service-txt"}>24 hours service</Box>
+            <Box className={"service-txt"}>{count} hours service</Box>
             <Box className={"signup"}>
               {!authMember ? (
-                <Button variant={"contained"} className={"signup-button"}>
+                <Button
+                  variant={"contained"}
+                  className={"signup-button"}
+                  onClick={buttonHandler}
+                  // onClick={() => setCount(count + 1)} // onClick bosilganda setCount ishga tushayotgan payt countni ilgari qiymatidan foydalangan holda 1 ga oshiramiz
+                >
                   SIGN UP
                 </Button>
               ) : null}
