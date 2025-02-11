@@ -2,18 +2,20 @@ import { Member } from "./member";
 import { Product } from "./product";
 
 /** REACT APP STATE **/
-// butun applicationimizda ishlatilayotgan ma'lumotlarni type integratsiyasi
+// butun application da ishlatilayotgan ma'lumotlarni type integratsiyasi
 export interface AppRootState {
-  homePage: HomePageState; // homePage dagi barcha datalarni typeni HomePageState bilan belgilab oldik
+  homePage: HomePageState; // homePage dagi barcha datalarni type integratsiayasini HomePageState bilan belgilab oldik
+  // productsPage: ProductsPageState;
 }
 
 /** HOMEPAGE **/
 export interface HomePageState {
-    popularDishes: Product[];
-    newDishes: Product[];
-    topUsers: Member[];
+  // HomePageState => homePage screen componentimizni ichida ishlatilayotgana butun ma'lumotlarni o'zidea ifoda etadigon interface.
+  popularDishes: Product[];
+  newDishes: Product[];
+  topUsers: Member[];
 }
 
 /** PRODUCTS PAGE **/
 
-/** OERDERS PAGE **/
+/** ORDERS PAGE **/

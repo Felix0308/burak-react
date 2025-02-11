@@ -3,16 +3,17 @@ import React, { Component } from "react";
 
 class Test extends Component {
   constructor(props) {
-    super(props);
-    this.state = {
+    //=> Component boshlang'ich sozlamalarini o'rnatadi(class lar o'zini constructoriga ega)
+    super(props); // super sysntxsis orqali inhereint parent (Component)classga propsni path qilyapmiz
+    this.state = {  //=> state property
       brand: "Ford",
       model: "Mustang",
       color: "red",
       year: 1964,
     };
   }
-  changeDetail = () => {
-    this.setState({
+  changeDetail = () => {    //=> class methodi
+    this.setState({       //=> state ichidagi ma'lumotlarni o'zgartiryapti
       color: "blue",
       brand: "Tesla",
       model: "Model S",
@@ -20,19 +21,19 @@ class Test extends Component {
     });
   };
 
-  componentDidMount() {
+  componentDidMount() {  // birinchi qurib olinayotganda ishga tushadi
     console.log("componentDidMount");
     // runs after first render => RETRIEVE DATA FROM BACKEND SERVER
   }
 
-  componentWillUnmount() {
+  componentWillUnmount() {   
     console.log("componentWillUnmount");
-    // runs before component unmount
+    // runs before component unmount. page yashirlishidan oldin ishga tushadi
   }
 
-  componentDidUpdate() {}
+  componentDidUpdate() {} // qiymat update bo'ladi virtual domdan real domga ko'chadi
 
-  render() {
+  render() { //=> render(){} orqali viewni hosil qilib qaytaryapmiz(return)
     return (
       <div>
         <h1>My {this.state.brand}</h1>

@@ -5,7 +5,8 @@ import React, { useEffect, useState } from "react";
 
 export default function HomeNavbar() {
   const authMember = null;
-  const [count, setCount] = useState<number>(0); // saqlanishi kerak bo'lgan keyni(count)ni kiritdik va uni boshlang'ich qiymatini 0 deb oldik. hookimiz count nomli state ni hosil qilib berdi
+  const [count, setCount] = useState<number>(0); 
+  // count nomli qiymatni state ichida hosil qilib, uni boshlang'ich qiymatini 0 ga tengladik.
   const [value, setvalue] = useState<boolean>(true);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function HomeNavbar() {
     return () => {
       console.log("componentWillUnmount");
     };
-  }, [value]); // => componentDidUpdate()
+  }, [value]); // => componentDidUpdate()  
 
   /** HANDLERS **/
 
