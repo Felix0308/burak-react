@@ -29,6 +29,9 @@ export default function HomePage() {
   const { popularDishes } = useSelector(popularDishesRetriever);
   // Selector: Store => Data (Storagedan biz saqlagan Datani qabul qilib oladi)
 
+  // console.log(process.env.REACT_APP_API_URL); 
+  
+
   useEffect(() => {
     // Backend server data request => Data (backenddan json formatda data krib keladi)
     // Slice: Data => Store (Slice mantig'i Backend dan kelgan Datani Redux Storage ga joylaydi )
