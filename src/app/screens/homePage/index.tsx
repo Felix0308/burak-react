@@ -7,16 +7,35 @@ import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import "../../../css/home.css";
 
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
+import { setPopularDishes } from "./slice";
+import { retrievePopularDishes } from "./selector";
+import { Product } from "../../../lib/types/product";
+
+/** REDUX SLICE & SELECTOR **/
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), // => setPopularDishes commandasini setPopularDishes reduceri orqali hosil qilib oldik
+}); // setPopularDishes: commanda va reducer ni bir xil atadik va 1 chi kelgan commanda, 2 chi kelgan reducer
+
+const popularDishesRetriever = createSelector(
+  retrievePopularDishes,
+  (popularDishes) => ({popularDishes})
+);
+
 export default function HomePage() {
-  // Selector: Store => Data (Stodan biz saqlagan Datani qabul qilib oladi)
+  const { setPopularDishes } = actionDispatch(useDispatch()); // function component ichida setPopularDishes ni caqirib qo'lga olyapmiz
+  const { popularDishes } = useSelector(popularDishesRetriever);
+  // Selector: Store => Data (Storagedan biz saqlagan Datani qabul qilib oladi)
+
   useEffect(() => {
     // Backend server data request => Data (backenddan json formatda data krib keladi)
-
     // Slice: Data => Store (Slice mantig'i Backend dan kelgan Datani Redux Storage ga joylaydi )
-
   }, []);
 
-  return (  // return ichiga view ni joylandi 
+  return (
+    // return ichiga view ni joylandi
     <div className={"homepage"}>
       <Statistics />
       <PopularDishes />
@@ -27,3 +46,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+
