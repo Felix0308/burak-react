@@ -7,21 +7,27 @@ import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setNewDishes, setPopularDishes } from "./slice";
+import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
+import MemberService from "../../services/MemberService";
+import { Member } from "../../../lib/types/member";
+
 import "../../../css/home.css";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), // => setPopularDishes commandasini setPopularDishes reduceri orqali hosil qilib oldik
   setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
+  setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 }); // setPopularDishes: commanda va reducer ni bir xil atadik va 1 chi kelgan commanda, 2 chi kelgan reducer
 
-
 export default function HomePage() {
-  const { setPopularDishes, setNewDishes } = actionDispatch(useDispatch()); // function component ichida setPopularDishes ni caqirib qo'lga olyapmiz
+  const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(
+    useDispatch()
+  );
+  // function component ichida setPopularDishes ni caqirib qo'lga olyapmiz
 
   // console.log(process.env.REACT_APP_API_URL);
 
@@ -45,20 +51,24 @@ export default function HomePage() {
       })
       .catch((err) => console.log(err));
 
-      product
-        .getProducts({
-          page: 1,
-          limit: 4,
-          order: "createdAt",  // eng oxiri qo'shilgan taomlar 
-          // productCollection: ProductCollection.DISH,
-        })
-        .then((data) => {
-          setNewDishes(data);
-        })
-        .catch((err) => console.log(err));
+    product
+      .getProducts({
+        page: 1,
+        limit: 4,
+        order: "createdAt", // eng oxiri qo'shilgan taomlar
+        // productCollection: ProductCollection.DISH,
+      })
+      .then((data) => setNewDishes(data))
+      .catch((err) => console.log(err));
+
+    const member = new MemberService();
+    member
+      .getTopUsers()
+      .then((data) => setTopUsers(data))
+      .catch((err) => console.log(err));
     // Slice: Data => Store (Slice mantig'i Backend dan kelgan Datani Redux Storage ga joylaydi )
   }, []);
-  
+
   return (
     // return ichiga view ni joylandi
     <div className={"homepage"}>
