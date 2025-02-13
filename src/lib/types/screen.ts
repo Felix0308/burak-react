@@ -10,7 +10,7 @@ export interface AppRootState {
 
 /** HOMEPAGE **/
 export interface HomePageState {
-  // HomePageState => homePage screen componentimizni ichida ishlatilayotgana butun ma'lumotlarni o'zidea ifoda etadigon interface.
+  // HomePageState => homePage screen componentimizni ichida ishlatilayotgana butun ma'lumotlarni o'zida ifoda etadigon interface.
   popularDishes: Product[];
   newDishes: Product[];
   topUsers: Member[];

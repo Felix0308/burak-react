@@ -19,7 +19,7 @@ const homePageSlice = createSlice({
       // state => yuqoridagi HomePageState
       // action => useEffect hook orqali Slice mantig'iga ko'ra backendan kelgan saqlab olingan Data
       state.popularDishes = action.payload;
-      // actionni payload qismida kirib kelgan malumotni initialState dfa joylashgan popularDishes nomli key mizni value siga tenglashtir yoki key ostidagi valueni yangilab ber
+      // actionni payload qismida kirib kelgan malumotni initialState da joylashgan popularDishes nomli key mizni value siga tenglashtir yoki key ostidagi valueni yangilab ber
     },
     setNewDishes: (state, action) => {
       state.newDishes = action.payload;

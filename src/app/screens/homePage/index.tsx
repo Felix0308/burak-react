@@ -7,36 +7,46 @@ import ActiveUsers from "./ActiveUsers";
 import Events from "./Events";
 import "../../../css/home.css";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { createSelector } from "reselect";
 import { setPopularDishes } from "./slice";
-import { retrievePopularDishes } from "./selector";
 import { Product } from "../../../lib/types/product";
+import ProductService from "../../services/ProductService";
+import { ProductCollection } from "../../../lib/enums/product.enum";
 
 /** REDUX SLICE & SELECTOR **/
 const actionDispatch = (dispatch: Dispatch) => ({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)), // => setPopularDishes commandasini setPopularDishes reduceri orqali hosil qilib oldik
 }); // setPopularDishes: commanda va reducer ni bir xil atadik va 1 chi kelgan commanda, 2 chi kelgan reducer
 
-const popularDishesRetriever = createSelector(
-  retrievePopularDishes,
-  (popularDishes) => ({popularDishes})
-);
 
 export default function HomePage() {
   const { setPopularDishes } = actionDispatch(useDispatch()); // function component ichida setPopularDishes ni caqirib qo'lga olyapmiz
-  const { popularDishes } = useSelector(popularDishesRetriever);
-  // Selector: Store => Data (Storagedan biz saqlagan Datani qabul qilib oladi)
 
-  // console.log(process.env.REACT_APP_API_URL); 
-  
+  // console.log(process.env.REACT_APP_API_URL);
 
   useEffect(() => {
     // Backend server data request => Data (backenddan json formatda data krib keladi)
+
+    const product = new ProductService(); // ProductService class orqali yangi product objectini hosil qildik
+    // shu objectimizni methodlari yordamida backenddan malumotlarni chaqirib olamiz
+    product
+      .getProducts({
+        // product objectini getProduct methodi inputni qiymatini kiritishga majbur qiladi
+        page: 1,
+        limit: 4,
+        order: "productViews", // order - productViews ga asoslangan
+        productCollection: ProductCollection.DISH,
+      })
+      .then((data) => {
+        // backenddan data qabul qiladi
+        // console.log("data passed here:", data);
+        setPopularDishes(data); // qabul qilingan datani (redux Storage ga)setPopularDishes ga yuklaydi
+      })
+      .catch((err) => console.log(err));
     // Slice: Data => Store (Slice mantig'i Backend dan kelgan Datani Redux Storage ga joylaydi )
   }, []);
-
+  
   return (
     // return ichiga view ni joylandi
     <div className={"homepage"}>
@@ -49,5 +59,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-
