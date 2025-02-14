@@ -7,7 +7,7 @@ const selectHomePage = (state: AppRootState) => state.homePage;
 
 export const retrievePopularDishes = createSelector(
   selectHomePage, //=> birinchi argument -yuqoridagi constanta
-  (HomePage) => HomePage.popularDishes // HomePage ni qo'lga kiritib olib ichidan popularDishes qabul qilib berish mantig'i
+  (HomePage) => HomePage.popularDishes // HomePage ni qo'lga kiritib olib ichidan popularDishesni eng oxirgi qiymatini qabul qilib berish mantig'i
 );
 
 export const retrieveNewDishes = createSelector(

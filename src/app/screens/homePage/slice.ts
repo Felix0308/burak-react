@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { HomePageState } from "../../../lib/types/screen";
-import { HomeMax } from "@mui/icons-material";
 
 const initialState: HomePageState = {
   // homePage screen componentiga daxldor sliceni hosil qildik
@@ -30,9 +29,10 @@ const homePageSlice = createSlice({
   },
 });
 
-export const { setPopularDishes, setNewDishes, setTopUsers } =  // bu reducerlarni tashqarida ishlatish uchun export qilindi
+export const { setPopularDishes, setNewDishes, setTopUsers } =  // bu actionlarni tashqarida ishlatish uchun export qilindi
 homePageSlice.actions;
 
 const HomePageReducer = homePageSlice.reducer; 
 export default HomePageReducer;  
 // homePageSlice ga daxldor bo'lgan reducerni yaxlit holda tashqariga export qilindi
+// reducerni store ga 1 marta bog'lash uchun export qilinyapti
