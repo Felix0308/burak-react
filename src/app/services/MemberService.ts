@@ -25,10 +25,12 @@ class MemberService {
     try {
       const url = `${this.path}/member/restaurant`;
       const result = await axios.get(url);
+      console.log("getRestaurant:", result);
 
-      return result.data;
+      const restaurant: Member = result.data;
+      return restaurant;
     } catch (err) {
-      console.log("Error, getTopUsers:", err);
+      console.log("Error, getRestaurant:", err);
       throw err;
     }
   }
