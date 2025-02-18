@@ -46,7 +46,7 @@ interface ChosenProductProps {
 }
 
 export default function ChosenProduct(props: ChosenProductProps) {
-  const {onAdd} = props; // onAdd ni props ni ichidaan qabul qilyapmiz
+  const { onAdd } = props; // onAdd ni props ni ichidaan qabul qilyapmiz
   const { productId } = useParams<{ productId: string }>();
   const { setRestaurant, setChosenProduct } = actionDispatch(useDispatch());
   // console.log("productId:", productId);
@@ -117,7 +117,22 @@ export default function ChosenProduct(props: ChosenProductProps) {
               <span>{chosenProduct?.productPrice}</span>
             </div>
             <div className={"button-box"}>
-              <Button variant="contained">Add To Basket</Button>
+              <Button
+                variant="contained"
+                onClick={(e) => {
+                  // console.log("BUTTON PRESSED!");
+                  onAdd({
+                    _id: chosenProduct._id,
+                    quantity: 1,
+                    name: chosenProduct.productName,
+                    price: chosenProduct.productPrice,
+                    image: chosenProduct.productImages[0], // birinchi image ni olyapmiz
+                  });
+                  e.stopPropagation();
+                }}
+              >
+                Add To Basket
+              </Button>
             </div>
           </Box>
         </Stack>

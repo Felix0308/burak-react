@@ -12,47 +12,31 @@ import HelpPage from "./screens/helpPage";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-import { CartItem } from "../lib/types/search";
+import Test from "./screens/Test";
+import useBasket from "./hooks/useBasket";
 
 function App() {
   const location = useLocation();
-  // basket mantig'i:
-  const cartJson: string | null = localStorage.getItem("cartData"); // refresh qilinganda localStorage dan malumotni qabul qilib oldik
-  const currentCart = cartJson ? JSON.parse(cartJson) : []; // cartni oxirgi saqlangan malumotiga asoslanib boshlangich cartItemni qiymatini JSON formatdan objectga aylantirib qo'lga olib beradi
-  const [cartItems, setCartItems] = useState<CartItem[]>([currentCart]); //=> boshlang'ich qiymatni cartItemga tengladik. initialstate valueni hosil qildik
-
-  /** HANDLERS **/
-
-  // onAdd defination qismi:
-  const onAdd = (input: CartItem) => {
-    // onAdd ishga tushganda input kirib keladi
-    const exist: any = cartItems.find(
-      (item: CartItem) => item._id === input._id
-    ); // basketga qo'shayotgan product basketda bor/yuqligini ya'ni cartItems da kirib kelgan inputni bor/yuqligini tekshiramiz.
-    if (exist) {
-      // agar mavjud bo'lsa
-      const cartUpdate = cartItems.map(
-        (item: CartItem) =>
-          item._id === input._id
-            ? { ...exist, quantity: exist.quantity + 1 } // mavjud productni topib quantitysini 1 ga oshiryapmiz
-            : item // boshqa productlarda item ni o'zini return qiladi
-      );
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate));
-    } else {
-      // mavjud bo'lmasa
-      const cartUpdate = [...cartItems, { ...input }];
-      setCartItems(cartUpdate);
-      localStorage.setItem("cartData", JSON.stringify(cartUpdate)); // yangilangan cart ni malumotini localStorage ga biz nomlangan nom("cartData") bilan JSON formatda saqladi
-    }
-  };
+  const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
 
   return (
     <>
       {location.pathname === "/" ? (
-        <HomeNavbar cartItems={cartItems} /> // HomeNavbarga cartItems ni path qildik
+        <HomeNavbar
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+        />
       ) : (
-        <OtherNavbar cartItems={cartItems} /> // OtherNavbarga cartItems ni path qildik
+        <OtherNavbar
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
+        />
       )}
       <Switch>
         <Route path="/products">
