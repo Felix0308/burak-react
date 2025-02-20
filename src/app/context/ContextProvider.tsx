@@ -19,7 +19,7 @@ const ContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ authMember, setAuthMember, orderBuilder, setOrderBuilder }}
+      value={{ authMember, setAuthMember }}
     >
       {children}
     </GlobalContext.Provider>
