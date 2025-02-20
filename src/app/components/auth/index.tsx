@@ -48,7 +48,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
-  // const { setAuthMember } = useGlobals();
+  const { setAuthMember } = useGlobals();
 
   /** HANDLERS **/
 
@@ -94,6 +94,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const result = await member.signup(signupInput);
 
       // Saving Authenticated User
+      setAuthMember(result);
       handleSignupClose();
     } catch (err) {
       console.log(err);
@@ -117,6 +118,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       const result = await member.login(loginInput);
 
       // Saving Authenticated User
+      setAuthMember(result);
       handleLoginClose();
     } catch (err) {
       console.log("fashdiah", err);

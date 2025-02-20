@@ -59,10 +59,9 @@ class MemberService {
     try {
       const url = this.path + "/member/login";
       const result = await axios.post(url, input, {
-        withCredentials: true,
+        withCredentials: true, // backen frontendga cookini joyladi va ma'lumotlarini o'zgartira oladi.
       });
       console.log("login:", result);
-      
 
       const member: Member = result.data.member;
       console.log("member:", member);
@@ -70,6 +69,19 @@ class MemberService {
       return member;
     } catch (err) {
       console.log("Error, login:", err);
+      throw err;
+    }
+  }
+
+  public async logout(): Promise<void> {
+    try {
+      const url = this.path + "/member/logout";
+      const result = await axios.post(url, {}, { withCredentials: true });
+      console.log("logout", result);
+
+      localStorage.removeItem("memberData");
+    } catch (err) {
+      console.log("Error, logout:", err);
       throw err;
     }
   }
