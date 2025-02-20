@@ -16,7 +16,7 @@ interface HomeNavbarProps {
 
 export default function HomeNavbar(props: HomeNavbarProps) {
   const {
-    cartItems,
+    cartItems,   // distraction yo'li bilan olinda
     onAdd,
     onRemove,
     onDelete,
@@ -80,7 +80,8 @@ export default function HomeNavbar(props: HomeNavbarProps) {
                 <Button
                   variant="contained"
                   className="login-button"
-                  onClick={() => setLoginOpen(true)} // button bosilganda Login oynasi chiqadi
+                  onClick={() => setLoginOpen(true)} 
+                  // button bosilganda Login oynasi chiqadi
                 >
                   Login
                 </Button>

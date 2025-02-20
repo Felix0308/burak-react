@@ -4,8 +4,8 @@ import { CartItem } from "../../lib/types/search";
 const useBasket = () => {
   // basket mantig'i:
   const cartJson: string | null = localStorage.getItem("cartData"); // refresh qilinganda localStorage dan malumotni qabul qilib oldik
-  const currentCart = cartJson ? JSON.parse(cartJson) : []; // cartni oxirgi saqlangan malumotiga asoslanib boshlangich cartItemni qiymatini JSON formatdan objectga aylantirib qo'lga olib beradi
-  const [cartItems, setCartItems] = useState<CartItem[]>([currentCart]); //=> boshlang'ich qiymatni cartItemga tengladik. initialstate valueni hosil qildik
+  const currentCart = cartJson ? JSON.parse(cartJson) : [];         // cartni oxirgi saqlangan malumotiga asoslanib boshlangich cartItemni qiymatini JSON formatdan objectga aylantirib qo'lga olib beradi
+  const [cartItems, setCartItems] = useState<CartItem[]>([currentCart]);  //=> boshlang'ich qiymatni cartItemga tengladik. initialstate valueni hosil qildik
 
   /** HANDLERS **/
 

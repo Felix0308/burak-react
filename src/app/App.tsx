@@ -24,8 +24,8 @@ function App() {
 
 
   /** HANDLERS **/
-
-  const handleSignupClose = () => setSignupOpen(false);  // signup oynasi chiqqanda tashqariga bosilsa hidden bo'ladi
+  // signup oynasi chiqqanda tashqariga bosilsa hidden bo'ladi:
+  const handleSignupClose = () => setSignupOpen(false);  
   const handleLoginClose = () => setLoginOpen(false);
 
   return (
