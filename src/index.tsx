@@ -1,5 +1,5 @@
 import React from "react";
-import {createRoot} from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import App from "./app/App";
@@ -11,7 +11,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import "./css/index.css";
 import ContextProvider from "./app/context/ContextProvider";
 
-const container = document.getElementById('root')!;
+const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 // Global Integration: REDUX | MUI | ROUTER | ...
@@ -19,16 +19,15 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ContextProvider>
-        <ThemeProvider theme={theme}>   
-        <CssBaseline />
-        <Router>
-          <App />
-        </Router>
-      </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router>
+            <App />
+          </Router>
+        </ThemeProvider>
       </ContextProvider>
-      
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

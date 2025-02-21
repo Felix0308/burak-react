@@ -22,7 +22,7 @@ import { useGlobals } from "./hooks/useGlobals";
 
 function App() {
   const location = useLocation();
-  const {setAuthMember} = useGlobals();
+  const { setAuthMember } = useGlobals();
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
   const [signupOpen, setSignupOpen] = useState<boolean>(false);
   const [loginOpen, setLoginOpen] = useState<boolean>(false);
@@ -30,27 +30,27 @@ function App() {
 
   /** HANDLERS **/
   // signup oynasi chiqqanda tashqariga bosilsa hidden bo'ladi:
- const handleSignUpClose = () => setSignupOpen(false);
- const handleLoginClose = () => setLoginOpen(false);
+  const handleSignUpClose = () => setSignupOpen(false);
+  const handleLoginClose = () => setLoginOpen(false);
 
- const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
-   setAnchorEl(e.currentTarget);
- };
- const handleCloseLogout = () => {
-   setAnchorEl(null);
- };
- const handleLogoutRequest = async () => {
-   try {
-     const member = new MemberService();
-     const result = await member.logout();
+  const handleLogoutClick = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const handleCloseLogout = () => {
+    setAnchorEl(null);
+  };
+  const handleLogoutRequest = async () => {
+    try {
+      const member = new MemberService();
+      const result = await member.logout();
 
-     await sweetTopSuccessAlert("success", 700);
-     setAuthMember(null);  //bo'lgandan keyin
-   } catch (err) {
-     console.log(err);
-     sweetErrorHandling(Messages.error1);
-   }
- };
+      await sweetTopSuccessAlert("success", 700);
+      setAuthMember(null); //bo'lgandan keyin
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(Messages.error1);
+    }
+  };
 
   return (
     <>
@@ -106,7 +106,7 @@ function App() {
         signupOpen={signupOpen}
         loginOpen={loginOpen}
         handleLoginClose={handleLoginClose}
-        handleSignupClose={handleSignupClose}
+        handleSignupClose={handleSignUpClose}
       />
     </>
   );
