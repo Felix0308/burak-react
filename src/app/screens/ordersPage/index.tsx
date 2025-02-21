@@ -8,14 +8,36 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { Order, OrderInquiry } from "../../../lib/types/order";
+import { setPausedOrders, setProcessOrders, setFinishedOrders } from "./slice";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
+import { useGlobals } from "../../hooks/useGlobals";
+import { useHistory } from "react-router-dom";
+import { serverApi } from "../../../lib/config";
+import { MemberType } from "../../../lib/enums/member.enum";
 import "../../../css/order.css";
 
+/** redux slice & selector */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+  setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+  setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
+});
+
 export default function OrdersPage() {
+  const { setPausedOrders, setProcessOrders, setFinishedOrders } =
+    actionDispatch(useDispatch());
   const [value, setValue] = useState("1");
+
+  /** HANDLERS */
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
-  console.log(value);
+
+  // console.log(value);
   return (
     <div className="order-page">
       <Container className="order-container">

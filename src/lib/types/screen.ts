@@ -1,4 +1,5 @@
 import { Member } from "./member";
+import { Order } from "./order";
 import { Product } from "./product";
 
 /** REACT APP STATE **/
@@ -6,6 +7,7 @@ import { Product } from "./product";
 export interface AppRootState {
   homePage: HomePageState; // homePage dagi barcha datalarni type integratsiayasini HomePageState bilan belgilab oldik
   productsPage: ProductsPageState;
+  ordersPage: OrdersPageState;
 }
 
 /** HOMEPAGE **/
@@ -23,3 +25,8 @@ export interface ProductsPageState {
   products: Product[];
 }
 /** ORDERS PAGE **/
+export interface OrdersPageState {
+  pausedOrders: Order[];
+  processOrders: Order[];
+  finishedOrders: Order[];
+}
