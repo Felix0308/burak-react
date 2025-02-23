@@ -76,7 +76,7 @@ export default function OrdersPage() {
   };
 
   if (!authMember) history.push("/");
-  // console.log(value); 
+  // console.log(value);
   return (
     <div className="order-page">
       <Container className="order-container">
@@ -109,22 +109,34 @@ export default function OrdersPage() {
           <Stack className="member-box order-info-box">
             <div className="order-user-img">
               <img
-                src="/icons/default-user.svg"
+                src={
+                  authMember?.memberImage
+                    ? `${serverApi}/${authMember.memberImage}`
+                    : `/icons/default-user.svg`
+                }
                 className="order-user-avatar"
               />
               <div className="order-user-icon-box">
                 <img
-                  src="/icons/user-badge.svg"
+                  src={
+                    authMember?.memberType === MemberType.RESTAURANT
+                      ? "/icons/restaurant.svg"
+                      : "icons/user-badge.svg"
+                  }
                   className="order-user-prof-img"
                 />
               </div>
             </div>
-            <Box className="order-user-name">Justin</Box>
-            <Box className="order-user-prof">USER</Box>
+            <Box className="order-user-name"> {authMember?.memberNick}</Box>
+            <Box className="order-user-prof"> {authMember?.memberType}</Box>
             <Box className="liner" />
             <Stack className="order-user-address">
               <LocationOnIcon />
-              <Box className="spec-address-text">South Korea, Busan</Box>
+              <Box className="spec-address-text">
+                {authMember?.memberAddress
+                  ? authMember.memberAddress
+                  : "Do not exist"}
+              </Box>
             </Stack>
           </Stack>
 
@@ -134,7 +146,7 @@ export default function OrdersPage() {
               <Box className="card-half-input">07 / 24</Box>
               <Box className="card-half-input">CVV: 010</Box>
             </Stack>
-            <Box className="card-input">Justin Robertson</Box>
+            <Box className="card-input">Felix</Box>
             <Stack className="cards-box">
               <img src="/icons/western-card.svg"></img>
               <img src="/icons/master-card.svg"></img>

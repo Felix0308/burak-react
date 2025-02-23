@@ -86,7 +86,7 @@ class MemberService {
     }
   }
 
-  public async update(input: MemberUpdateInput): Promise<Member> {
+  public async updateMember(input: MemberUpdateInput): Promise<Member> {
     try {
       const formData = new FormData();
       formData.append("memberNick", input.memberNick || "");

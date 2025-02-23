@@ -60,7 +60,7 @@ export function Settings() {
         throw new Error(Messages.error3);
 
       const member = new MemberService();
-      const result = await member.update(memberUpdateInput);
+      const result = await member.updateMember(memberUpdateInput);
       setAuthMember(result);
 
       await sweetTopSmallSuccessAlert("Modified Successfully", 700);
