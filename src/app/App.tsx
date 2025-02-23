@@ -11,14 +11,14 @@ import Footer from "./components/footer";
 import HelpPage from "./screens/helpPage";
 import useBasket from "./hooks/useBasket";
 import AuthenticationModal from "./components/auth";
-import Test from "./screens/Test";
-import "../css/app.css";
-import "../css/navbar.css";
-import "../css/footer.css";
 import { sweetErrorHandling, sweetTopSuccessAlert } from "../lib/sweetAlert";
 import MemberService from "./services/MemberService";
 import { Messages } from "../lib/config";
 import { useGlobals } from "./hooks/useGlobals";
+import Test from "./screens/Test";
+import "../css/app.css";
+import "../css/navbar.css";
+import "../css/footer.css";
 
 function App() {
   const location = useLocation();

@@ -23,7 +23,7 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const { authMember } = useGlobals();
+  const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price, // umumiy productimizni narxi
@@ -45,7 +45,7 @@ export default function Basket(props: BasketProps) {
 
   const proceedOrderHandler = async () => {
     try {
-      handleClose();  // basket avval close bo'ladi
+      handleClose(); // basket avval close bo'ladi
       if (!authMember) throw Error(Messages.error2);
 
       const order = new OrderService();

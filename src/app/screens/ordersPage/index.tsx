@@ -98,8 +98,8 @@ export default function OrdersPage() {
             </Stack>
 
             <Stack className="order-main-content">
-              <PausedOrders />
-              <ProcessOrders />
+              <PausedOrders setValue={setValue} />
+              <ProcessOrders setValue={setValue} />
               <FinishedOrders />
             </Stack>
           </TabContext>
@@ -147,4 +147,3 @@ export default function OrdersPage() {
     </div>
   );
 }
-
