@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -28,16 +28,55 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 
 export default function OrdersPage() {
+  const history = useHistory();
+  const { authMember, orderBuilder } = useGlobals();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
   const [value, setValue] = useState("1");
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,
+  });
+
+  useEffect(() => {
+    const order = new OrderService();
+
+    // get paused orders
+    order
+      .getMyOrders({
+        ...orderInquiry,
+        orderStatus: OrderStatus.PAUSE,
+      })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+
+    // get process orders
+    order
+      .getMyOrders({
+        ...orderInquiry,
+        orderStatus: OrderStatus.PROCESS,
+      })
+      .then((data) => setProcessOrders(data))
+      .catch((err) => console.log(err));
+
+    // get finished orders
+    order
+      .getMyOrders({
+        ...orderInquiry,
+        orderStatus: OrderStatus.FINISH,
+      })
+      .then((data) => setFinishedOrders(data))
+      .catch((err) => console.log(err));
+  }, [orderInquiry, orderBuilder]);
 
   /** HANDLERS */
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
-  // console.log(value);
+  if (!authMember) history.push("/");
+  console.log(value);
   return (
     <div className="order-page">
       <Container className="order-container">
