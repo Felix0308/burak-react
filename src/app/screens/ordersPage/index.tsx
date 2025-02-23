@@ -76,7 +76,7 @@ export default function OrdersPage() {
   };
 
   if (!authMember) history.push("/");
-  console.log(value);
+  // console.log(value); 
   return (
     <div className="order-page">
       <Container className="order-container">
