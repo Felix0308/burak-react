@@ -51,6 +51,7 @@ class OrderService {
       throw err;
     }
   }
+
 }
 
 export default OrderService;

@@ -20,9 +20,10 @@ const pausedOrdersRetriever = createSelector(
   (pausedOrders) => ({ pausedOrders })
 );
 
-
 export default function PausedOrders() {
   const { pausedOrders } = useSelector(pausedOrdersRetriever);
+
+  /** HANDLER */
 
   return (
     <TabPanel value="1">
@@ -40,7 +41,7 @@ export default function PausedOrders() {
                     <Box key={item._id} className={"orders-name-price"}>
                       <Stack className={"order-dish-class"}>
                         <img
-                          src={"img/lavash.webp"}
+                          src={imagePath}
                           className={"order-dish-img"}
                         />
                         <p className={"title-dish"}>{product.productName}</p>
@@ -91,7 +92,7 @@ export default function PausedOrders() {
         })}
 
         {!pausedOrders ||
-          (pausedOrders.length === 0 && (
+          (pausedOrders.length <= 0 && (
             <Box
               display={"flex"}
               flexDirection={"row"}
